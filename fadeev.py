@@ -52,10 +52,10 @@ def matToString(mat):
 			text += a[i]
 	return text
 
-if len(sys.argv) == 2:
+if len(sys.argv) == 3:
 
-	mode = sys.argv[0]
-	argMat = sys.argv[1]
+	mode = sys.argv[1]
+	argMat = sys.argv[2]
 	mat = np.matrix(argMat)
 
 
