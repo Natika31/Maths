@@ -58,11 +58,12 @@ if len(sys.argv) == 2:
 	argMat = sys.argv[1]
 	mat = np.matrix(argMat)
 
+
 	matInv,det = matInverse(mat)
 	pol = str(P(mat))
 
 	if mode == 1:
-		print(matInv)
+		print(matToString(matInv))
 	elif mode == 2:
 		print(det)
 	elif mode == 3:
