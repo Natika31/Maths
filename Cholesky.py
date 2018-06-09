@@ -1,49 +1,58 @@
 import numpy as np
 import math
 import matplotlib.pyplot as plt
+import sys
 
 def somme(A,B,maxk,x,y):
 	somme = 0
 	for k in range(maxk):
 		somme += A[y,k]*B[k,x]
-		print("A[",y,",",k,"] = ",A[y,k]," * B[",k,",",x,"] = ",B[k,x])
-
 	return np.sum(somme)
 
 def cholesky(A):
 	(X,Y) = A.shape
 	B = np.zeros(A.shape)
 	C = np.diag(np.ones(X),0)
-	
-
 	B[:,[0]] = A[:,0]
 	C[[0],:] = A[0,:]/B[0,0]
-	print("B :\n",B)
-	print("C :\n",C)
 	for y in range(Y):
 		for x in range(X):
-			print("A[",y,",",x,"]: ",A[y,x])
-			
-			if y >= x & x > 0:
-				print("Old B[",y,",",x,"]: ",B[y,x])
+			if y >= x & x > 0:			
 				s = somme(B,C,y,x,y)
 				B[y,x] = A[y,x] - s
-				print("somme : ",s)
-				print("New B[",y,",",x,"]: ",B[y,x])
-			if 0 < y & y < x:
-				print("Old C[",y,",",x,"]: ",C[y,x])	
+			if 0 < y & y < x:			
 				s = somme(B,C,x-1,x,y)
 				C[y,x] = (1/B[y,y])*( A[y,x] - s)
-				print(" B[",y,",",y,"]: ",B[y,y],"   somme : ",s)
-				print("New C[",y,",",x,"]: ",C[y,x])
+	return np.matrix(B),np.matrix(C)
 
-			
-			
-			print(" ")
+def matToString(mat):
+	a = mat[2:-2]
+	text = ""
+	hello = 0
+	for i in range(len(a)):
+		if (a[i] == ']'):
+			hello = 1
+		elif (a[i] == '[') & hello == 1:
+			hello = 0
+			text += ';'
+		elif hello == 0:
+			text += a[i]
+	
+	return text
 
-	print("B :\n",B)
-	print("C :\n",C)
-a = np.matrix([[2,1,3],[-1,1,1],[3,-1,1]])
-print(a)
+if len(sys.argv) == 2:
 
-cholesky(a)
+	mode = sys.argv[0]
+	argMat = sys.argv[1]
+	mat = np.matrix(argMat)
+
+	matInf,matSup = cholesky(mat)
+
+	if mode == 1:
+		print(matToString(str(matInf)))
+	elif mode == 2:
+		print(matToString(str(matSup)))
+	else:
+		print("e1")
+else:
+	print("e2")
