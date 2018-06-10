@@ -9,13 +9,12 @@
   padding: 20px;
 }
 
-#EtiquetteMatrice{
+#etiquetteMatrice{
   padding-left: auto;
 }
 </style>
-
 <fieldset id = "console">
-  <span id = "EtiquetteMatrice" >
+  <span id = "etiquetteMatrice" >
   <label for="matrice" style="vertical-align: 0.55em; font-size:1.8em;"> A = </label>
     <span id = "matrice"></span>
       <span>
@@ -23,13 +22,13 @@
       </span>
       <span class="mtable" style="vertical-align: 6.05em;padding: 0px 0.167em;">
         <span classe= "args">
-          <?php for ($l = 0; $l < $dimension ; $l++) : ?>
+          <?php for ($li = 0; $li < $_SESSION['dimension']; $li++) : ?>
             <span class= "ligne" >
-              <?php  for ($c = 0;$c < $dimension; $c++) :?>
+              <?php  for ($co = 0;$co < $_SESSION['dimension']; $co++) :?>
                 <span class = "col1" style=" width: 1em">
                   <span class = "col1-b" style="margin-top: -0.2em;">
                     <span class = "col1-m" >
-                        <span class="col1-s" style="padding-top: 0.351em; padding-bottom: 0.351em;">1</span>
+                        <span class="col1-s" style="padding-top: 0.351em; padding-bottom: 0.351em;"> <?php  echo 0; ?></span>
                     </span>
                   </span>
                 </span>
