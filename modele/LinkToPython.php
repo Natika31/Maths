@@ -86,48 +86,57 @@ class LinkToPython{
     
     public function fadeev() : bool {
                 
-        $commande = "python fadeev.py 1 ".$this->stringToPython()."";
+        $commande = "python ../modele/fadeev.py 1 ".$this->stringToPython()."";
         exec($commande, $res); 
         
-        if ($res) {
-            if ($res == 'e0') { echo 'Le determinant est nul, la matrice n\'est pas inversible !';}
-            if ($res == 'e1') { echo 'mode incorrect'; }
-            if ($res == 'e2') { echo 'mauvais nombre d\'arguments'; }
+        if ($res != false) {
+            if ($res[0] == 'e0') { echo 'Le determinant est nul, la matrice n\'est pas inversible !';}
+            if ($res[0] == 'e1') { echo 'mode incorrect'; }
+            if ($res[0] == 'e2') { echo 'mauvais nombre d\'arguments'; }
                 
                 
             $this->createMatriceResultat($res);
-            $this->inversible = false;
+            $this->inversible = true;
         }    
         return $this->inversible;
     }
     
     public function getDeterminant() : string {
         
-        $commande = "python fadeev.py 2 ".$this->stringToPython()."";
+        $commande = "python ../modele/fadeev.py 2 ".$this->stringToPython();
         exec($commande, $res);
         
-        if ($this->inversible) {
+        if ($res != false){
             
-                return $res[0];
-        }else { return '#';        
-        }
-         
+            if ($res[0] == 'e0') { return "0";}
+            if ($res[0] == 'e1') { echo 'mode incorrect'; }
+            if ($res[0] == 'e2') { echo 'mauvais nombre d\'arguments'; }
+               
+           return $res[0];     
+        
+           
+        } else {
+      
+            return "erreur";
+        }  
     }
     
     
     private function createMatriceResultat($donnees) {
         
-        $tableau = explode(";", $donnees[0]);
-        
-        for($i=0; $i <$this->dimension; $i++) {
+        $tableau = explode(";", trim($donnees[0]));
+               
+        for($i=0; $i < $this->dimension; $i++) {
             
-            $this->matriceResultat[$i] = array();
-            
-            $ligne = explode("  ", $tableau[$i]);
+            if (substr($tableau[$i],0,1) == '_') { $tableau[$i] = substr($tableau[$i],1);}
            
-            for($j=0; $j<$this->dimension; $j++) {
-                       
-                $this->matriceResultat[$i][$j] = floatval($ligne[$j]);
+            $this->matriceResultat[$i] = array();
+                    
+                 $ligne = explode('_', $tableau[$i]); 
+                     
+            for($j=0; $j < $this->dimension; $j++) {
+          
+                $this->matriceResultat[$i][$j] = $ligne[$j];
             }
         }
     }
@@ -135,8 +144,7 @@ class LinkToPython{
     public function getResultat($ligne, $colonne) : string {
         
         if ($this->inversible) {
-            
-                return $this->matriceResultat[$ligne][$colonne];
+             return $this->matriceResultat[$ligne][$colonne];
         }else { return '#';        
         }
     }
