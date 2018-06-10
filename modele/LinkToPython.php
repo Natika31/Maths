@@ -12,7 +12,7 @@ class LinkToPython{
     private $matriceResultat = array(); 
     private $dimension;
     private $res = array();
-    
+    private $inversible = false;
     /*
      * Constructeur de classe avec en parametre la dimension de la matrice 
      * 
@@ -91,16 +91,14 @@ class LinkToPython{
         
         if ($res) {
             if ($res == 'e0') { echo 'Le determinant est nul, la matrice n\'est pas inversible !';}
-            if ($res == 'e1') { echo 'mode incorrect'; return false;}
-            if ($res == 'e2') { echo 'mauvais nombre d\'arguments'; return false;}
+            if ($res == 'e1') { echo 'mode incorrect'; }
+            if ($res == 'e2') { echo 'mauvais nombre d\'arguments'; }
                 
                 
             $this->createMatriceResultat($res);
-            return true;
-                  
-        } else {
-            return false;
-        }
+            $this->inversible = false;
+        }    
+        return $this->inversible;
     }
     
     public function getDeterminant() : string {
@@ -108,7 +106,12 @@ class LinkToPython{
         $commande = "python fadeev.py 2 ".$this->stringToPython()."";
         exec($commande, $res);
         
-        return $res; 
+        if ($this->inversible) {
+            
+                return $res[0];
+        }else { return '#';        
+        }
+         
     }
     
     
@@ -131,7 +134,11 @@ class LinkToPython{
 
     public function getResultat($ligne, $colonne) : string {
         
-        return $this->matriceResultat[$ligne][$colonne];
+        if ($this->inversible) {
+            
+                return $this->matriceResultat[$ligne][$colonne];
+        }else { return '#';        
+        }
     }
  
     public function getValeur($ligne, $colonne) : string {
@@ -141,10 +148,7 @@ class LinkToPython{
     
     public function getDimension() : int {
        return $this->dimension;
-    }
-    
-    
-    
+    }    
  }    
  
  

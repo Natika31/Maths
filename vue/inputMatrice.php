@@ -34,7 +34,7 @@
 <form class="dimension" method="post" action="index.php">
       <span id="dimension">
         <h3>Dimension de votre matrice :</h3>
-        <input class="dimension" name="dimension" type="text" type="text" value="<?php if (isset($_SESSION['dimension'])) { echo $_SESSION['dimension'];} ?>">
+        <input class="dimension" name="dimension" type="text" type="text" value="">
         <button class="dimension" type="submit"  id= "btok">ok</button>
       </span>
 </form>
