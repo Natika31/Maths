@@ -5,23 +5,28 @@ def generateurDeMatriceAleatoire(dimension=3,min=0,max=1):
 	return np.random.randn(dimension,dimension) * (max - min +1) + min
 
 def matInverse(A1,A=None,B=None,n=1):
-	if np.linalg.det(A1) != 0.:
-		if n==1:
-			q = np.trace(A1)	
-			B = A1 - np.dot(q,np.identity(len(A1)))
-		else:
-			A = np.dot(A1,B)
-			q = np.trace(A)/n
+	(X,Y) = A1.shape
+	if X == Y :
+		if (np.linalg.det(A1) == 0.) & (X == 2):
+			print("e0")
+		else :
+			if n==1:
+				q = np.trace(A1)	
+				B = A1 - np.dot(q,np.identity(len(A1)))
+			else:
+				A = np.dot(A1,B)
+				q = np.trace(A)/n
+				
+				Bold = B
+				B = A - np.dot(q,np.identity(len(A)))
 			
-			Bold = B
-			B = A - np.dot(q,np.identity(len(A)))
+			if B.all() == 0:
+				return str(np.divide(Bold,q)),q
+			else:	
+				return matInverse(A1,A,B,n+1)
+	else :
+		print("e4")
 		
-		if B.all() == 0:
-			return str(np.divide(Bold,q)),q
-		else:	
-			return matInverse(A1,A,B,n+1)
-	else:
-		print("e0")
 	return None
 
 

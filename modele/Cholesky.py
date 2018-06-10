@@ -27,6 +27,7 @@ def cholesky(A):
 
 def matToString(mat):
 	a = mat[2:-2]
+
 	text = ""
 	hello = 0
 	for i in range(len(a)):
@@ -36,22 +37,27 @@ def matToString(mat):
 			hello = 0
 			text += ';'
 		elif hello == 0:
-			text += a[i]
-	
+			if (str(a[i]) == " ") & ((str(a[(i+1)%len(a)]) != " ") | (i+1 >= len(a))):
+				text += "_"
+			elif (str(a[i]) != " "):
+				text += a[i]
+			
 	return text
 
-if len(sys.argv) == 2:
+if len(sys.argv) == 3:
 
-	mode = sys.argv[0]
-	argMat = sys.argv[1]
+	mode = sys.argv[1]
+	argMat = sys.argv[2]
 	mat = np.matrix(argMat)
 
 	matInf,matSup = cholesky(mat)
 
-	if mode == 1:
+	if mode == '1':
 		print(matToString(str(matInf)))
-	elif mode == 2:
+	elif mode =='2':
 		print(matToString(str(matSup)))
+	elif mode == '3':
+		print(matToString(str(np.dot(matInf,matSup))))
 	else:
 		print("e1")
 else:
