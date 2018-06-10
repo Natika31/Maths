@@ -52,13 +52,17 @@ def matToString(mat):
 			text += a[i]
 	return text
 
+for i in range(len(sys.argv)):
+	print("argument n°",i," : ",sys.argv[i])
+
+"""
 if len(sys.argv) == 3:
 
 	mode = sys.argv[1]
 	argMat = sys.argv[2]
 	mat = np.matrix(argMat)
 
-
+	
 	matInv,det = matInverse(mat)
 	pol = str(P(mat))
 
@@ -79,3 +83,4 @@ if len(sys.argv) == 3:
 		print("e1")
 else:
 	print("e2")
+"""
