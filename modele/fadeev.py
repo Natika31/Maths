@@ -53,7 +53,7 @@ def matToString(mat):
 	return text
 
 for i in range(len(sys.argv)):
-	print("argument n°",i," : ",sys.argv[i])
+	print("argument n°",i," : ",str(sys.argv[i]))
 
 """
 if len(sys.argv) == 3:
