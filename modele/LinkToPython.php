@@ -90,9 +90,9 @@ class LinkToPython{
         exec($commande, $res); 
         
         if ($res != false) {
-            if ($res[0] == 'e0') { echo 'Le determinant est nul, la matrice n\'est pas inversible !';}
-            if ($res[0] == 'e1') { echo 'mode incorrect'; }
-            if ($res[0] == 'e2') { echo 'mauvais nombre d\'arguments'; }
+            if ($res[0] == 'e0') { exit( 'Le determinant est nul, la matrice n\'est pas inversible !');}
+            if ($res[0] == 'e1') { exit ( 'mode incorrect');}
+            if ($res[0] == 'e2') { exit('mauvais nombre d\'arguments'); }
                 
                 
             $this->createMatriceResultat($res);
