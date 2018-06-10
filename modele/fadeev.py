@@ -39,6 +39,7 @@ def P(A):
 
 def matToString(mat):
 	a = mat[2:-2]
+
 	text = ""
 	hello = 0
 	for i in range(len(a)):
@@ -60,16 +61,14 @@ if len(sys.argv) == 3:
 	argMat = sys.argv[2]
 	mat = np.matrix(argMat)
 
-	print (matToString(mat))
+	matInv,det = matInverse(mat)
+	pol = str(P(mat))
 
-	#matInv,det = matInverse(mat)
-	#pol = str(P(mat))
-	"""
-	if mode == 1:
+	if mode == '1':
 		print(matToString(matInv))
-	elif mode == 2:
+	elif mode == '2':
 		print(det)
-	elif mode == 3:
+	elif mode == '3':
 		a = pol[1:-1]
 		text = ""
 		for i in range(len(a)):
@@ -80,6 +79,6 @@ if len(sys.argv) == 3:
 		print(text)
 	else:
 		print("e1")
-	"""
+
 else:
 	print("e2")
