@@ -9,20 +9,13 @@
   padding: 20px;
 }
 
-#etiquetteMatrice{
+#EtiquetteMatrice{
   padding-left: auto;
 }
 </style>
-<?php $matrice = array();
-for ($li = 0; $li < $_SESSION['dimension']; $li++) :
-  for ($co = 0; $co < $_SESSION['dimension']; $co++) :
-    $matrice[$li][$co] = $_POST['a'.$li.$co];
-  endfor;
-endfor;?>
-
 
 <fieldset id = "console">
-  <span id = "etiquetteMatrice" >
+  <span id = "EtiquetteMatrice" >
   <label for="matrice" style="vertical-align: 0.55em; font-size:1.8em;"> A = </label>
     <span id = "matrice"></span>
       <span>
@@ -30,23 +23,13 @@ endfor;?>
       </span>
       <span class="mtable" style="vertical-align: 6.05em;padding: 0px 0.167em;">
         <span classe= "args">
-<<<<<<< HEAD
           <?php for ($l = 0; $l < $_SESSION['ltp']->getDimension() ; $l++) : ?>
             <span class= "ligne" >
               <?php  for ($c = 0;$c < $_SESSION['ltp']->getDimension(); $c++) :?>
                 <span class = "col1" style=" width: 1em">
                   <span class = "col1-b" style="margin-top: -0.2em;">
                     <span class = "col1-m" >
-                        <span class="col1-s" style="padding-top: 0.351em; padding-bottom: 0.351em;"><?= $_SESSION['ltp']->getvaleur($l, $c) ?? 1?></span>
-=======
-          <?php for ($li = 0; $li < $_SESSION['dimension']; $li++) : ?>
-            <span class= "ligne" >
-              <?php  for ($co = 0;$co < $_SESSION['dimension']; $co++) :?>
-                <span class = "col1" style=" width: 1em">
-                  <span class = "col1-b" style="margin-top: -0.2em;">
-                    <span class = "col1-m" >
-                        <span class="col1-s" style="padding-top: 0.351em; padding-bottom: 0.351em;"> <?php  echo $matrice[$li][$co] = $_POST['a'.$li.$co]; ?></span>
->>>>>>> master
+                        <span class="col1-s" style="padding-top: 0.351em; padding-bottom: 0.351em;"><?= $_SESSION['ltp']->getValeur($l, $c) ?? 1?></span>
                     </span>
                   </span>
                 </span>

@@ -26,8 +26,19 @@ and open the template in the editor.
         
         echo ' var_dump($ltp->fadeev()); <br>';
         var_dump($ltp->fadeev());
-        echo ' var_dump($ltp->getResultat(0,0));<br>';
-        var_dump($ltp->getResultat(0,0));
+        echo ' var_dump($ltp->getResultat(0,0));';
+        $res00 = $ltp->getResultat(0,0);
+        echo $res00.'<br>';
+        echo ' var_dump($ltp->getResultat(0,1));';
+        $res01 = $ltp->getResultat(0,1);
+        echo $res01.'<br>';
+        echo ' var_dump($ltp->getResultat(1,0));';
+        $res10 = $ltp->getResultat(1,0);
+        echo $res10.'<br>';
+        echo ' var_dump($ltp->getResultat(1,1));';
+        $res11 = $ltp->getResultat(1,1);
+        echo $res11.'<br>';
+        
         
         
         

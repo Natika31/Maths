@@ -3,7 +3,8 @@
 class LinkToPython{
     
     /*
-     * Permet de faire le lien entre les donnees fournies par l IHM et le programme python qui va les traiter.
+     * Permet de faire le lien entre les donnees fournies par l IHM 
+     * et le programme python qui va les traiter.
      * Et vice-versa
      */
     
@@ -51,7 +52,8 @@ class LinkToPython{
     
     
     /*
-     * Contruit une chaine de caractere representative de la matrice pouvant etre passee en parametre d'un script python
+     * Contruit une chaine de caractere representative de la matrice pouvant etre 
+     * passee en parametre d'un script python
      * 
      * @return string
      */
@@ -74,43 +76,57 @@ class LinkToPython{
         return $stringTP;   
     }
     
- 
+     /**
+     * Envoi une requete vers le fichier python, 
+     * renvoie false si il y a un probleme
+     * sinon traite les exceptions
+     * 
+     * @return bool
+     */
     
     public function fadeev() : bool {
                 
         $commande = "python fadeev.py 1 ".$this->stringToPython()."";
-        echo $commande;
         exec($commande, $res); 
         
         if ($res) {
+            if ($res == 'e0') { echo 'Le determinant est nul, la matrice n\'est pas inversible !';}
+            if ($res == 'e1') { echo 'mode incorrect'; return false;}
+            if ($res == 'e2') { echo 'mauvais nombre d\'arguments'; return false;}
+                
+                
             $this->createMatriceResultat($res);
             return true;
+                  
         } else {
             return false;
         }
     }
     
+    public function getDeterminant() : string {
+        
+        $commande = "python fadeev.py 2 ".$this->stringToPython()."";
+        exec($commande, $res);
+        
+        return $res; 
+    }
     
     
     private function createMatriceResultat($donnees) {
         
-        $i = 0;
-        foreach ($donnees as $ligne) { 
-           
-            
-            $ligne = rtrim($ligne, '] ');
-            $ligne = ltrim($ligne, ' [');
-            $valeurs = preg_split('/ +/', $ligne);
+        $tableau = explode(";", $donnees[0]);
+        
+        for($i=0; $i <$this->dimension; $i++) {
             
             $this->matriceResultat[$i] = array();
-       
+            
+            $ligne = explode("  ", $tableau[$i]);
+           
             for($j=0; $j<$this->dimension; $j++) {
-               echo $valeurs[$j].'<br>'; 
-                           
-               $this->matriceResultat[$i][$j] = $valeurs[$j];
+                       
+                $this->matriceResultat[$i][$j] = floatval($ligne[$j]);
             }
-            $i += 1;
-        }    
+        }
     }
 
     public function getResultat($ligne, $colonne) : string {
@@ -126,7 +142,9 @@ class LinkToPython{
     public function getDimension() : int {
        return $this->dimension;
     }
-            
+    
+    
+    
  }    
  
  
