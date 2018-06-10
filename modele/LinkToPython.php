@@ -76,21 +76,23 @@ class LinkToPython{
     
  
     
-    public function fadeev() : array {
-        
-        
+    public function fadeev() : bool {
+                
         $commande = "python fadeev.py 1 ".$this->stringToPython()."";
         echo $commande;
         exec($commande, $res); 
         
-        echo 'resultat de fadeeev = <br>';
-        var_dump($res);
-        return $this->createMatriceResultat($res);    
+        if ($res) {
+            $this->createMatriceResultat($res);
+            return true;
+        } else {
+            return false;
+        }
     }
     
     
     
-    private function createMatriceResultat($donnees) : array {
+    private function createMatriceResultat($donnees) {
         
         $i = 0;
         foreach ($donnees as $ligne) { 
@@ -104,21 +106,27 @@ class LinkToPython{
        
             for($j=0; $j<$this->dimension; $j++) {
                echo $valeurs[$j].'<br>'; 
-               
-               $strToFloat = floatval($ligne[$j])*1.0;
-               echo 'valeur de $strToFloat '.$j.' = '.$strToFloat.'<br>';
-               
-               $this->matriceResultat[$i][$j] = $strToFloat;
+                           
+               $this->matriceResultat[$i][$j] = $valeurs[$j];
             }
             $i += 1;
         }    
-       
-        
-        return $this->matriceResultat;
     }
 
-    public function getResultat($ligne, $colonne) : int {
+    public function getResultat($ligne, $colonne) : string {
         
-        return intval($this->matriceResultat[$ligne][$colonne]);
+        return $this->matriceResultat[$ligne][$colonne];
     }
+ 
+    public function getValeur($ligne, $colonne) : string {
+        
+        return $this->donnees[$ligne][$colonne];
+    }
+    
+    public function getDimension() : int {
+       return $this->dimension;
+    }
+            
  }    
+ 
+ 

@@ -23,13 +23,13 @@
       </span>
       <span class="mtable" style="vertical-align: 6.05em;padding: 0px 0.167em;">
         <span classe= "args">
-          <?php for ($l = 0; $l < $dimension ; $l++) : ?>
+          <?php for ($l = 0; $l < $_SESSION['ltp']->getDimension() ; $l++) : ?>
             <span class= "ligne" >
-              <?php  for ($c = 0;$c < $dimension; $c++) :?>
+              <?php  for ($c = 0;$c < $_SESSION['ltp']->getDimension(); $c++) :?>
                 <span class = "col1" style=" width: 1em">
                   <span class = "col1-b" style="margin-top: -0.2em;">
                     <span class = "col1-m" >
-                        <span class="col1-s" style="padding-top: 0.351em; padding-bottom: 0.351em;">1</span>
+                        <span class="col1-s" style="padding-top: 0.351em; padding-bottom: 0.351em;"><?= $_SESSION['ltp']->getvaleur($l, $c) ?? 1?></span>
                     </span>
                   </span>
                 </span>
