@@ -1,7 +1,6 @@
 import numpy as np
 import sys
 
-
 def generateurDeMatriceAleatoire(dimension=3,min=0,max=1):
 	return np.random.randn(dimension,dimension) * (max - min +1) + min
 
@@ -40,6 +39,7 @@ def P(A):
 
 def matToString(mat):
 	a = mat[2:-2]
+
 	text = ""
 	hello = 0
 	for i in range(len(a)):
@@ -52,25 +52,23 @@ def matToString(mat):
 			text += a[i]
 	return text
 
-for i in range(len(sys.argv)):
-	print("argument n°",i," : ",str(sys.argv[i]))
 
-"""
+
+
 if len(sys.argv) == 3:
 
 	mode = sys.argv[1]
 	argMat = sys.argv[2]
 	mat = np.matrix(argMat)
 
-	
 	matInv,det = matInverse(mat)
 	pol = str(P(mat))
 
-	if mode == 1:
+	if mode == '1':
 		print(matToString(matInv))
-	elif mode == 2:
+	elif mode == '2':
 		print(det)
-	elif mode == 3:
+	elif mode == '3':
 		a = pol[1:-1]
 		text = ""
 		for i in range(len(a)):
@@ -81,6 +79,6 @@ if len(sys.argv) == 3:
 		print(text)
 	else:
 		print("e1")
+
 else:
 	print("e2")
-"""
