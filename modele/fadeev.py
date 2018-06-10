@@ -52,8 +52,9 @@ def matToString(mat):
 			text += a[i]
 	return text
 
+
 for i in range(len(sys.argv)):
-	print("argument n°",i," : ",str(sys.argv[i]))
+	print("argument[",i,"] : ",sys.argv[i])
 
 """
 if len(sys.argv) == 3:
