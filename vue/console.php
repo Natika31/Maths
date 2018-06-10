@@ -13,6 +13,14 @@
   padding-left: auto;
 }
 </style>
+<?php $matrice = array();
+for ($li = 0; $li < $_SESSION['dimension']; $li++) :
+  for ($co = 0; $co < $_SESSION['dimension']; $co++) :
+    $matrice[$li][$co] = $_POST['a'.$li.$co];
+  endfor;
+endfor;?>
+
+
 <fieldset id = "console">
   <span id = "etiquetteMatrice" >
   <label for="matrice" style="vertical-align: 0.55em; font-size:1.8em;"> A = </label>
@@ -28,7 +36,7 @@
                 <span class = "col1" style=" width: 1em">
                   <span class = "col1-b" style="margin-top: -0.2em;">
                     <span class = "col1-m" >
-                        <span class="col1-s" style="padding-top: 0.351em; padding-bottom: 0.351em;"> <?php  echo 0; ?></span>
+                        <span class="col1-s" style="padding-top: 0.351em; padding-bottom: 0.351em;"> <?php  echo $matrice[$li][$co] = $_POST['a'.$li.$co]; ?></span>
                     </span>
                   </span>
                 </span>

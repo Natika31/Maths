@@ -52,12 +52,11 @@
         <tr class= "ligne">
           <?php for ($c = 0; $c < $dimension; $c++) : ?>
             <td >
-              <input id="x" name= a <?= $l ?><?= $c ?> type="text" class="form" >
-
+              <input id="x" name= "<?php'a'.$l.$c ?>" type="text" class="form" >
             </td>
           <?php endfor; ?>
         </tr>
-      <?php /*endfor;*/?>
+      <?php endfor;?>
 
     </tbody>
     <button id= "btCalcul" type="submit"  id= "btCalcul">Calculer</button>
