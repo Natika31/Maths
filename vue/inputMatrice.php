@@ -16,6 +16,10 @@
   height: 25px;
   }
 
+  #btCalcul{
+    margin-top: 10px;
+  }
+
   #dimension{
     margin-top: 10px;
   }
@@ -45,14 +49,13 @@
         <tr class= "ligne">
           <?php for ($c = 0; $c < $dimension; $c++) : ?>
             <td >
-              <input id="x" name= 'cellule' type="text" class="form" >
-              <?php/* $matrice[$l][$c] */$a = $_POST('cellule'); echo $a; */?>
+              <input id="x" name= "a.<?= $l ?>.<?= $c ?>"  type="text" class="form" >
             </td>
           <?php endfor; ?>
         </tr>
       <?php endfor;?>
     </tbody>
-    <button class="matrice" type="submit"  id= "btCalcul">Calculer</button>
+    <button id= "btCalcul" type="submit"  id= "btCalcul">Calculer</button>
   </form>
 </table>
 </fieldset>
