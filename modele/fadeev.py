@@ -49,7 +49,11 @@ def matToString(mat):
 			hello = 0
 			text += ';'
 		elif hello == 0:
-			text += a[i]
+			if (str(a[i]) == " ") & ((str(a[(i+1)%len(a)]) != " ") | (i+1 >= len(a))):
+				text += "_"
+			elif (str(a[i]) != " "):
+				text += a[i]
+			
 	return text
 
 
