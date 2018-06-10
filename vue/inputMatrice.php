@@ -48,11 +48,11 @@
   <table id='matrice'>
     <form class="matrice" method="post" action="fadeev.php">
       <tbody>
-        <?php /*for ($i = 0; $i < $dimension; $i++) :  */?>
+        <?php for ($l = 0; $l < $dimension; $l++) :  ?>
         <tr class= "ligne">
-          <?php for ($i = 0; $i < $dimension; $i++) : ?>
+          <?php for ($c = 0; $c < $dimension; $c++) : ?>
             <td >
-              <input id="x" name= <?= $i ?> type="text" class="form" >
+              <input id="x" name= a <?= $l ?><?= $c ?> type="text" class="form" >
 
             </td>
           <?php endfor; ?>
