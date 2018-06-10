@@ -1,4 +1,5 @@
 <! DOCTYPE html>
+
 <html>
   <head>
       <meta charset="utf-8">
@@ -18,12 +19,17 @@
                     $_SESSION['ltp']->setMatrice();
                 }?>
         <h2 id="resultat"> Console </h2>
+<<<<<<< HEAD
           <?php require('../vue/console.php'); ?>
           <?php  ?>
+=======
+          <?php /*require('../vue/console.php');*/ ?>
+          <?php /*require('../modele/function/function.php');*/ ?>
+>>>>>>> master
         <h3 id="inverse"> Matrice inverse </h2>
-          <?php require('../vue/consoleInverse.php'); ?>
+          <?php/* require('../vue/consoleInverse.php'); */?>
         <h3 id="determinant"> Déterminant </h2>
-          <?php require('../vue/consoleDeterminant.php'); ?>
+          <?php /*require('../vue/consoleDeterminant.php'); */?>
       </main>
   </body>
 </html>
