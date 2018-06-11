@@ -14,7 +14,6 @@ def matInverse(A1,A=None,B=None,n=1):
 			if n==1:
 				q = np.trace(A1)	
 				B = A1 - np.dot(q,np.identity(len(A1)))
-				print(B)
 			else:
 				A = np.dot(A1,B)
 				q = np.trace(A)/n
