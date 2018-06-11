@@ -15,12 +15,13 @@ def matInverse(A1,A=None,B=None,n=1):
 				q = np.trace(A1)	
 				B = A1 - np.dot(q,np.identity(len(A1)))
 			else:
-				A = np.dot(A1,B)
-				q = np.trace(A)/n
-
 				Bold = B
+
+				A = np.dot(A1,Bold)
+				q = np.trace(A)/n
 				B = A - np.dot(q,np.identity(len(A)))
 			
+			print(q)
 			if estNul(B):
 				return (np.divide(Bold,q),q)
 			else:	
@@ -30,6 +31,7 @@ def matInverse(A1,A=None,B=None,n=1):
 		
 	return None
 
+
 def estNul(A):
 	(X,Y) = A.shape
 	for i in range(Y):
@@ -37,16 +39,25 @@ def estNul(A):
 			if A[i,j] != 0:
 				return False
 	return True
-def P(A):
-	n=len(A)
-	I=np.eye(n)
-	Ak=A
+
+def fadeev(A):
+	dim=len(A)
+	I=np.eye(dim)
+	An=A
+	moinsLambda=-np.trace(An)
+	B = An + moinsLambda*I
 	P=[1]
-	for k in range(1,n+1):
-		c=-np.trace(Ak)/k
-		P.append(c)
-		Ak=np.dot(A,Ak+c*I)
-	return P
+
+	for n in range(2,dim+1):
+		Bold = B
+		An=np.dot(A,Bold)
+
+		moinsLambda=-np.trace(An)/n
+		P.append(moinsLambda)
+
+		B = An + moinsLambda*I
+
+	return ( np.divide(Bold,P[len(P)-1]) , P[len(P)-1], P )
 
 def matToString(mat):
 	a = mat[2:-2]
@@ -68,23 +79,21 @@ def matToString(mat):
 	return text
 
 
-
-
 if len(sys.argv) == 3:
 
 	mode = sys.argv[1]
 	argMat = sys.argv[2]
 	mat = np.matrix(argMat)
 
-	matInv,det = matInverse(mat)
-	pol = str(P(mat))
+	matInv,det,pol = fadeev(mat)
 
 	if mode == '1':
 		print(matToString(str(matInv)))
 	elif mode == '2':
-		print(det)
+		print(str(det))
 	elif mode == '3':
-		a = pol[1:-1]
+		tmp = str(pol)
+		a = tmp[1:-1]
 		text = ""
 		for i in range(len(a)):
 			if a[i] == ',':
