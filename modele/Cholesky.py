@@ -21,7 +21,7 @@ def cholesky(A):
 				s = somme(B,C,y,x,y)
 				B[y,x] = A[y,x] - s
 			if 0 < y & y < x:			
-				s = somme(B,C,x-1,x,y)
+				s = somme(B,C,x,x,y)
 				C[y,x] = (1/B[y,y])*( A[y,x] - s)
 	return np.matrix(B),np.matrix(C)
 
