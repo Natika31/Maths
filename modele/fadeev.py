@@ -79,17 +79,15 @@ def matToString(mat):
 	return text
 
 
-mat = generateurDeMatriceAleatoire(dimension = 5,min=-0.001,max=0.001)
+#mat = generateurDeMatriceAleatoire(dimension = 30,min=-1000000000000000000000000,max=1000000000000000000000000)
+#i = np.linalg.inv(mat)
+#matInv,det,pol = fadeev(mat)
+#print("Déterminant Numpy : ",np.linalg.det(mat)," Notre déterminant :",det)
+#print("Correction : \n",i)
+#print("Résultat : \n",matInv)
 
 
-i = np.linalg.inv(mat)
-matInv,det,pol = fadeev(mat)
-print("Déterminant Numpy : ",np.linalg.det(mat)," Notre déterminant :",det)
-print("Correction : \n",i)
-print("Résultat : \n",matInv)
 
-
-"""
 if len(sys.argv) == 3:
 
 	mode = sys.argv[1]
@@ -117,4 +115,3 @@ if len(sys.argv) == 3:
 
 else:
 	print("e2")
-"""
