@@ -57,7 +57,7 @@ def fadeev(A):
 
 		B = An + moinsLambda*I
 
-	return ( np.divide(Bold,P[len(P)-1]) , P[len(P)-1], P )
+	return ( np.divide(Bold,-P[len(P)-1]) , (-1)**(dim)*P[len(P)-1], P )
 
 def matToString(mat):
 	a = mat[2:-2]
@@ -79,6 +79,17 @@ def matToString(mat):
 	return text
 
 
+mat = generateurDeMatriceAleatoire(dimension = 5,min=-0.001,max=0.001)
+
+
+i = np.linalg.inv(mat)
+matInv,det,pol = fadeev(mat)
+print("Déterminant Numpy : ",np.linalg.det(mat)," Notre déterminant :",det)
+print("Correction : \n",i)
+print("Résultat : \n",matInv)
+
+
+"""
 if len(sys.argv) == 3:
 
 	mode = sys.argv[1]
@@ -106,3 +117,4 @@ if len(sys.argv) == 3:
 
 else:
 	print("e2")
+"""
