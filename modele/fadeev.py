@@ -44,20 +44,20 @@ def fadeev(A):
 	dim=len(A)
 	I=np.eye(dim)
 	An=A
-	moinsLambda=-np.trace(An)
-	B = An + moinsLambda*I
+	q=-np.trace(An)
+	B = An + q*I
 	P=[1]
 
 	for n in range(2,dim+1):
 		Bold = B
 		An=np.dot(A,Bold)
 
-		moinsLambda=-np.trace(An)/n
-		P.append(moinsLambda)
+		q=-np.trace(An)/n
+		P.append(q)
 
-		B = An + moinsLambda*I
+		B = An + q*I
 
-	return ( np.divide(Bold,-P[len(P)-1]) , (-1)**(dim)*P[len(P)-1], P )
+	return ( np.divide(Bold,-q) , q * (-1)**(dim), P )
 
 def matToString(mat):
 	a = mat[2:-2]
