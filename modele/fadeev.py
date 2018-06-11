@@ -10,18 +10,20 @@ def matInverse(A1,A=None,B=None,n=1):
 		if (np.linalg.det(A1) == 0.) & (X == 2):
 			print("e0")
 		else :
+			
 			if n==1:
 				q = np.trace(A1)	
 				B = A1 - np.dot(q,np.identity(len(A1)))
+				print(B)
 			else:
 				A = np.dot(A1,B)
 				q = np.trace(A)/n
-				
+
 				Bold = B
 				B = A - np.dot(q,np.identity(len(A)))
 			
-			if B.all() == 0:
-				return str(np.divide(Bold,q)),q
+			if estNul(B):
+				return (np.divide(Bold,q),q)
 			else:	
 				return matInverse(A1,A,B,n+1)
 	else :
@@ -29,8 +31,13 @@ def matInverse(A1,A=None,B=None,n=1):
 		
 	return None
 
-
-
+def estNul(A):
+	(X,Y) = A.shape
+	for i in range(Y):
+		for j in range(X):
+			if A[i,j] != 0:
+				return False
+	return True
 def P(A):
 	n=len(A)
 	I=np.eye(n)
@@ -74,7 +81,7 @@ if len(sys.argv) == 3:
 	pol = str(P(mat))
 
 	if mode == '1':
-		print(matToString(matInv))
+		print(matToString(str(matInv)))
 	elif mode == '2':
 		print(det)
 	elif mode == '3':
